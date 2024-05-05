@@ -22,5 +22,6 @@
   "homepage": "https://github.com/doings-projects-stuffs/financial-calculator#readme",
   "devDependencies": {
     "vitest": "^1.6.0"
-  }
+  },
+  "type": "module"
 }
