@@ -1,10 +1,10 @@
 import {
     negate
-} from "./utils";
+} from "./utils.js";
 
 export const TVM = {
     "F": {
-        "P": negate(simpleAmount),
+        "P_simple": negate(simpleAmount),
         "P": negate(compoundAmount),
         "A": negate(seriesCompoundAmount),
     },
@@ -16,7 +16,7 @@ export const TVM = {
     "A": {
         "F": negate(sinkingFund),
         "P": negate(capitalRecovery),
-        "G": uniformGradientSeries
+        "G": negate(uniformGradientSeries)
     }
 }
 export default TVM
@@ -109,7 +109,13 @@ export function sinkingFund(i, n) {
  * @returns
  */
 export function uniformGradientSeries(i, n) {
-    return (1 / i) - (n / (Math.pow(1 + i, n) - 1))
+    if (n === 0) {
+        throw new Error("The number of periods 'n' cannot be zero.");
+    }
+    else if (n === Infinity) {
+        throw new Error("The number of periods 'n' cannot be Infinity.");
+    }
+    return (1 / i) - (n / (Math.pow(1 + i, n) - 1));
 }
 
 /**
@@ -118,7 +124,7 @@ export function uniformGradientSeries(i, n) {
  * @param {number} n number of compounding periods per time interval
  */
 export function geometricSeriesPresentValue(i, g, n) {
-    if (i > g) {
+    if (i > g && n === Infinity) {
         return 1 / (i - g);
     } else if (i === g) {
         return n / (1 + g);
@@ -127,4 +133,9 @@ export function geometricSeriesPresentValue(i, g, n) {
     }
 }
 
-// console.log(100 * TVM.F.P(0.1, 2));
+// console.log(1 * TVM.A.P(0.1, 2)); // in terminal execute node tvm.js
+// console.log(1 * TVM.F.P_simple(0.1, 2));
+// console.log(1 * TVM.A.G(0.08, 10));
+console.log(1 * TVM.P.C(0.12, 0.1, 6)); // i != g
+console.log(1 * TVM.P.C(0.1, 0.1, 6)); // i = g
+console.log(1 * TVM.P.C(0.12, 0.1, 9999999999999)); // i > g && n is Inf
