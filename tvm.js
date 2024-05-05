@@ -15,6 +15,10 @@ const TVM = {
     //}
 };
 
+/**
+* @param {number} i interest rate
+* @param {number} n number of compounding periods per time interval
+*/
 function compoundAmount(i, n) {
     if (n === Infinity) {
         return Infinity;
@@ -22,6 +26,10 @@ function compoundAmount(i, n) {
     return Math.pow(1 + i, n);
 }
 
+/**
+* @param {number} i interest rate
+* @param {number} n number of compounding periods per time interval
+*/
 function presentValueAmount(i, n) {
     if (n === Infinity) {
         return 0;
@@ -29,6 +37,11 @@ function presentValueAmount(i, n) {
     return 1 / Math.pow(1 + i, n);
 }
 
+/**
+* @param {number} i interest rate
+* @param {number} g uniform gradient series factor
+* @param {number} n number of compounding periods per time interval
+*/
 function geometricSeriesPresentValue(i, g, n) {
     if (i > g) {
         return 1 / (i - g);
