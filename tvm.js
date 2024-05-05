@@ -1,4 +1,4 @@
-const TVM = {
+export const TVM = {
     "F": {
         "P": compoundAmount,
         // "A": seriesCompoundAmount,
@@ -15,11 +15,13 @@ const TVM = {
     //}
 };
 
+export default TVM
+
 /**
 * @param {number} i interest rate
 * @param {number} n number of compounding periods per time interval
 */
-function compoundAmount(i, n) {
+export function compoundAmount(i, n) {
     if (n === Infinity) {
         return Infinity;
     }
@@ -30,7 +32,7 @@ function compoundAmount(i, n) {
 * @param {number} i interest rate
 * @param {number} n number of compounding periods per time interval
 */
-function presentValueAmount(i, n) {
+export function presentValueAmount(i, n) {
     if (n === Infinity) {
         return 0;
     }
@@ -42,7 +44,7 @@ function presentValueAmount(i, n) {
 * @param {number} g uniform gradient series factor
 * @param {number} n number of compounding periods per time interval
 */
-function geometricSeriesPresentValue(i, g, n) {
+export function geometricSeriesPresentValue(i, g, n) {
     if (i > g) {
         return 1 / (i - g);
     } else if (i === g) {
@@ -51,5 +53,3 @@ function geometricSeriesPresentValue(i, g, n) {
         return (1 - Math.pow(((1 + g) / (1 + i)), n)) / (i - g);
     }
 }
-
-export default TVM
