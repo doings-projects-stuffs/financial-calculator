@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "jest"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/doings-projects-stuffs/financial-calculator#readme",
   "devDependencies": {
-    "jest": "^29.7.0"
+    "vitest": "^1.6.0"
   }
 }
