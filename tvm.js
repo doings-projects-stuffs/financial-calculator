@@ -39,11 +39,4 @@ function geometricSeriesPresentValue(i, g, n) {
     }
 }
 
-module.exports = TVM;  // Export the TVM object
-
-
-
-// console.log("Hello world")
-
-// console.log(1 * TVM["F"]["P"](10, 999999999))
-// console.log(1 * TVM["P"]["F"](10, 99999999))
+export default TVM
