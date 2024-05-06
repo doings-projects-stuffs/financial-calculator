@@ -136,6 +136,6 @@ export function geometricSeriesPresentValue(i, g, n) {
 // console.log(1 * TVM.A.P(0.1, 2)); // in terminal execute node tvm.js
 // console.log(1 * TVM.F.P_simple(0.1, 2));
 // console.log(1 * TVM.A.G(0.08, 10));
-console.log(1 * TVM.P.C(0.12, 0.1, 6)); // i != g
-console.log(1 * TVM.P.C(0.1, 0.1, 6)); // i = g
-console.log(1 * TVM.P.C(0.12, 0.1, 9999999999999)); // i > g && n is Inf
+// console.log(1 * TVM.P.C(0.12, 0.1, 6)); // i != g
+// console.log(1 * TVM.P.C(0.1, 0.1, 6)); // i = g
+// console.log(1 * TVM.P.C(0.12, 0.1, 9999999999999)); // i > g && n is Inf
