@@ -51,19 +51,7 @@ export function presentValue(i, n) {
     if (n === Infinity) {
         return 0;
     }
-    return 1 / Math.pow(1 + i, n);
-}
-
-/**
- * (F/A,i,n) time value of money factor
- * @param {number} i interest rate (e.g. 10 for 10%)
- * @param {number} n number of compounding periods per time interval
- */
-export function seriesCompoundAmount(i, n) {
-    if (n === Infinity) {
-        return Infinity;
-    }
-    return (Math.pow(1 + i, n) - 1) / i;
+    return 1 / compoundAmount(i, n);
 }
 
 /**
@@ -87,7 +75,20 @@ export function capitalRecovery(i, n) {
     if (n === Infinity) {
         return i;
     }
-    return i / (1 - Math.pow(1 + i, -n));
+    return 1 / seriesPresentValue(i, n);
+}
+
+
+/**
+ * (F/A,i,n) time value of money factor
+ * @param {number} i interest rate (e.g. 10 for 10%)
+ * @param {number} n number of compounding periods per time interval
+ */
+export function seriesCompoundAmount(i, n) {
+    if (n === Infinity) {
+        return Infinity;
+    }
+    return (Math.pow(1 + i, n) - 1) / i;
 }
 
 /**
@@ -99,7 +100,7 @@ export function sinkingFund(i, n) {
     if (n === Infinity) {
         return 0;
     }
-    return i / (Math.pow(1 + i, n) - 1);
+    return i / seriesCompoundAmount(i, n);
 }
 
 /**

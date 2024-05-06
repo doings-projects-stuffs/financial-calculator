@@ -2,22 +2,41 @@ import { describe, expect, it, test } from 'vitest';
 import { TVM } from './tvm.js';
 import { findPercentage } from './utils.js';
 
-const is = [0.1, 1, 10, 100, 1000]; // interest rate in percentage
-const ns = [0, 1, 2, 10, 100, 1000, Infinity]; // number of periods
-const gs = [0, 0.5, 1, 5, 10, 20];  // growth rates in percentage for the Geometric Series
-
 describe('Testing Simple Interest Rate', () => {
 	test.each([
         { n: 0, i: 0,  expected: -1   },
-        { n: 1, i: 0,  expected: -1   },
+        { n: 0, i: 50,  expected: -1   },
         { n: 1, i: 50, expected: -1.5 },
         { n: 1, i: 100,expected: -2   },
         { n: 2, i: 50, expected: -2   },
         { n: 2, i: 100,expected: -3   },
+        { n: Infinity, i: 0, expected: NaN },
+        { n: Infinity, i: 50, expected: -Infinity },
     ])('n=$n, i=$i, P_simple($i, $n)=$expected', ({ n, i,  expected }) => {
-    	expect(TVM.F.P_simple(findPercentage(i), n)).toBeCloseTo(expected)
+    	expect(TVM.F.P_simple(findPercentage(i), n)).toBeCloseTo(expected);
     })
 })
+
+describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A,i,n), (A/P,i,n)', () => {
+    describe('Testing (F/P,i,n) and (P/F,i,n)', () => {
+        test.each([
+            { n: 0, i: 0,  value: -1   },
+            { n: 0, i: 50,  value: -1   },
+            { n: 0, i: Infinity,  value: -1   },
+            { n: 1, i: 0,  value: -1   },
+            { n: 1, i: 50, value: -1.5 },
+            { n: 1, i: 100,value: -2   },
+            { n: 2, i: 50, value: -2.25   },
+            { n: 2, i: 100,value: -4   },
+            { n: Infinity, i: 0, value: NaN },
+            { n: Infinity, i: 50, value: -Infinity },
+        ])('(F/P,$i,$n)=1/(P/F,$i,$n)=$value', (({ n, i, value }) => {
+            expect(TVM.F.P(findPercentage(i), n)).toBeCloseTo(value);
+            expect(1/TVM.P.F(findPercentage(i), n)).toBeCloseTo(value);
+        }))
+    })
+})
+
 
 // describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A,i,n), (A/P,i,n)', () => {
 //     is.forEach(i => {
