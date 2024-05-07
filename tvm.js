@@ -23,7 +23,7 @@ export default TVM
 
 /**
  * Simple interest rate to compute the factor for future amount owed
- * @param {number} i interest rate (e.g. 10 for 10%) (e.g. 10 for 10%)
+ * @param {number} i interest rate (e.g. 0.1 for 10%)
  * @param {number} n number of compounding periods per time interval
  */
 export function simpleAmount(i, n) {
@@ -32,7 +32,7 @@ export function simpleAmount(i, n) {
 
 /**
  * (F/P,i,n) time value of money factor
- * @param {number} i interest rate (e.g. 10 for 10%) (e.g. 10 for 10%)
+ * @param {number} i interest rate (e.g. 0.1 for 10%)
  * @param {number} n number of compounding periods per time interval
  */
 export function compoundAmount(i, n) {
@@ -44,7 +44,7 @@ export function compoundAmount(i, n) {
 
 /**
  * (P/F,i,n) time value of money factor
- * @param {number} i interest rate (e.g. 10 for 10%)
+ * @param {number} i interest rate (e.g. 0.1 for 10%)
  * @param {number} n number of compounding periods per time interval
  */
 export function presentValue(i, n) {
@@ -56,7 +56,7 @@ export function presentValue(i, n) {
 
 /**
  * (P/A,i,n) time value of money factor
- * @param {number} i interest rate (e.g. 10 for 10%)
+ * @param {number} i interest rate (e.g. 0.1 for 10%)
  * @param {number} n number of compounding periods per time interval
  */
 export function seriesPresentValue(i, n) {
@@ -68,7 +68,7 @@ export function seriesPresentValue(i, n) {
 
 /**
  * (A/P,i,n) time value of money factor
- * @param {number} i interest rate (e.g. 10 for 10%)
+ * @param {number} i interest rate (e.g. 0.1 for 10%)
  * @param {number} n number of compounding periods per time interval
  */
 export function capitalRecovery(i, n) {
@@ -81,7 +81,7 @@ export function capitalRecovery(i, n) {
 
 /**
  * (F/A,i,n) time value of money factor
- * @param {number} i interest rate (e.g. 10 for 10%)
+ * @param {number} i interest rate (e.g. 0.1 for 10%)
  * @param {number} n number of compounding periods per time interval
  */
 export function seriesCompoundAmount(i, n) {
@@ -93,7 +93,7 @@ export function seriesCompoundAmount(i, n) {
 
 /**
  * (A/F,i,n) time value of money factor
- * @param {number} i interest rate (e.g. 10 for 10%)
+ * @param {number} i interest rate (e.g. 0.1 for 10%)
  * @param {number} n number of compounding periods per time interval
  */
 export function sinkingFund(i, n) {
@@ -105,7 +105,7 @@ export function sinkingFund(i, n) {
 
 /**
  * (A/G,i,n) time value of money factor
- * @param {number} interest rate (e.g. 10 for 10%)
+ * @param {number} interest rate (e.g. 0.1 for 10%)
  * @param {number} n number of compounding periods per time interval
  * @returns
  */
@@ -120,8 +120,8 @@ export function uniformGradientSeries(i, n) {
 }
 
 /**
- * @param {number} i interest rate (e.g. 10 for 10%)
- * @param {number} g uniform gradient series factor (e.g. 3 for 3%)
+ * @param {number} i interest rate (e.g. 0.1 for 10%)
+ * @param {number} g uniform gradient series factor (e.g. 0.03 for 3%)
  * @param {number} n number of compounding periods per time interval
  */
 export function geometricSeriesPresentValue(i, g, n) {

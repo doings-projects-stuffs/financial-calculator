@@ -28,11 +28,39 @@ describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A
             { n: 1, i: 100,value: -2   },
             { n: 2, i: 50, value: -2.25   },
             { n: 2, i: 100,value: -4   },
-            { n: Infinity, i: 0, value: NaN },
-            { n: Infinity, i: 50, value: -Infinity },
         ])('(F/P,$i,$n)=1/(P/F,$i,$n)=$value', (({ n, i, value }) => {
             expect(TVM.F.P(findPercentage(i), n)).toBeCloseTo(value);
             expect(1/TVM.P.F(findPercentage(i), n)).toBeCloseTo(value);
+        }))
+    })
+
+    describe('Testing (P/A,i,n) and (A/P,i,n)', () => {
+        // i = 0 leads to division by zero for P/A
+        test.each([
+            { n: 0, i: 50,  value: 0   },
+            { n: 0, i: Infinity,  value: 0 },
+            { n: 1, i: 50, value: -2/3 },
+            { n: 1, i: 100,value: -0.5 },
+            { n: 2, i: 50, value: -10/9 },
+            { n: 2, i: 100,value: -0.75 },
+        ])('(P/A,$i,$n)=1/(A/P,$i,$n)=$value', (({ n, i, value }) => {
+            expect(TVM.P.A(findPercentage(i), n)).toBeCloseTo(value);
+            expect(1/TVM.A.P(findPercentage(i), n)).toBeCloseTo(value);
+        }))
+    })
+
+    describe('Testing (F/A,i,n) and (A/F,i,n)', () => {
+        // i = 0 leads to division by zero for P/A
+        test.each([
+            { n: 0, i: 50,  value: 0   },
+            { n: 0, i: Infinity,  value: 0 },
+            { n: 1, i: 50, value: -1 },
+            { n: 1, i: 100,value: -1 },
+            { n: 2, i: 50, value: -2.5 },
+            { n: 2, i: 100,value: -3 },
+        ])('(F/A,$i,$n)=1/(A/F,$i,$n)=$value', (({ n, i, value }) => {
+            expect(TVM.F.A(findPercentage(i), n)).toBeCloseTo(value);
+            expect(1/TVM.A.F(findPercentage(i), n)).toBeCloseTo(value);
         }))
     })
 })
