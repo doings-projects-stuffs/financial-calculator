@@ -120,6 +120,7 @@ export function uniformGradientSeries(i, n) {
 }
 
 /**
+ * (P/C,i,g,n)
  * @param {number} i interest rate (e.g. 0.1 for 10%)
  * @param {number} g uniform gradient series factor (e.g. 0.03 for 3%)
  * @param {number} n number of compounding periods per time interval
