@@ -105,7 +105,7 @@ export function sinkingFund(i, n) {
     if (n === Infinity) {
         return 0;
     }
-    return i / seriesCompoundAmount(i, n);
+    return 1 / seriesCompoundAmount(i, n);
 }
 
 /**
