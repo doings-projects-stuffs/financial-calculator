@@ -37,6 +37,9 @@ export function simpleAmount(i, n) {
  */
 export function compoundAmount(i, n) {
     if (n === Infinity) {
+        if (i === 0) {
+            return NaN
+        }
         return Infinity;
     }
     return Math.pow(1 + i, n);
@@ -49,7 +52,9 @@ export function compoundAmount(i, n) {
  */
 export function presentValue(i, n) {
     if (n === Infinity) {
-        return 0;
+        if (i == 0) {
+            return NaN
+        }
     }
     return 1 / compoundAmount(i, n);
 }

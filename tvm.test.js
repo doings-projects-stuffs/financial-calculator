@@ -10,7 +10,6 @@ describe('Testing Simple Interest Rate', () => {
         { n: 1, i: 100, expected: -2 },
         { n: 2, i: 50, expected: -2 },
         { n: 2, i: 100, expected: -3 },
-        { n: Infinity, i: 0, expected: NaN },
         { n: Infinity, i: 50, expected: -Infinity },
     ])('n=$n, i=$i, P_simple($i, $n)=$expected', ({ n, i, expected }) => {
         expect(TVM.F.P_simple(findPercentage(i), n)).toBeCloseTo(expected);
@@ -32,6 +31,23 @@ describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A
             expect(TVM.F.P(findPercentage(i), n)).toBeCloseTo(value);
             expect(1 / TVM.P.F(findPercentage(i), n)).toBeCloseTo(value);
         }))
+        test('(F/P,0,Infinity)=1/(P/F,0,Infinity)=NaN', () => {
+            expect(TVM.F.P(0, Infinity)).toBe(NaN);
+            expect(1/TVM.P.F(0, Infinity)).toBe(NaN);
+        })
+
+        test('(F/P,50,Infinity)=Infinity', () => {
+            expect(TVM.F.P(0.5, Infinity)).toBe(-Infinity);
+        })
+        test('(F/P,Infinity,Infinity)=Infinity', () => {
+            expect(TVM.F.P(Infinity, Infinity)).toBe(-Infinity);
+        })
+        test('(P/F,50,Infinity)=-0', () => {
+            expect(TVM.P.F(0.5, Infinity)).toBe(-0);
+        })
+        test('(P/F,Infinity,Infinity)=-0', () => {
+            expect(TVM.P.F(Infinity, Infinity)).toBe(-0);
+        })
     })
 
     describe('Testing (P/A,i,n) and (A/P,i,n)', () => {
