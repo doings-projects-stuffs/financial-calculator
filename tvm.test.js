@@ -106,7 +106,6 @@ describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A
         }))
     })
 
-    // FIXME!!!
     describe('Testing (P/C,i,g,n)', () => {
         test.each([
             { n: 1, i: 50, g: 0, value: -0.6666666666666667 },
