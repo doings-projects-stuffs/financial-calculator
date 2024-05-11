@@ -54,6 +54,9 @@ describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A
     describe('Testing (P/A,i,n) and (A/P,i,n)', () => {
         // i = 0 leads to division by zero
         test.each([
+            { n: 0, i: 0, value: -0 },
+            { n: 1, i: 0, value: -1 },
+            { n: 10, i: 0, value: -10 },
             { n: 0, i: 50, value: 0 },
             { n: 0, i: Infinity, value: 0 },
             { n: 1, i: 50, value: -2 / 3 },
@@ -71,6 +74,9 @@ describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A
     describe('Testing (F/A,i,n) and (A/F,i,n)', () => {
         // i = 0 leads to division by zero
         test.each([
+            { n: 0, i: 0, value: -0 },
+            { n: 1, i: 0, value: -1 },
+            { n: 10, i: 0, value: -10 },
             { n: 0, i: 50, value: 0 },
             { n: 0, i: Infinity, value: 0 },
             { n: 1, i: 50, value: -1 },
@@ -99,6 +105,9 @@ describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A
     describe('Testing (A/G,i,n)', () => {
         test.each([
             // n = 0 leads to division by zero
+            { n: 1, i: 0, value: -0 },
+            { n: 2, i: 0, value: -0.5 },
+            { n: 10, i: 0, value: -4.5 },
             { n: 1, i: 50, value: 0 },
             { n: 1, i: 100, value: 0 },
             { n: 2, i: 50, value: -0.3999999999999999 },
