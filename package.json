@@ -1,0 +1,27 @@
+{
+  "name": "financial-calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doings-projects-stuffs/financial-calculator.git"
+  },
+  "keywords": [
+    "financial",
+    "calculator"
+  ],
+  "author": "",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/doings-projects-stuffs/financial-calculator/issues"
+  },
+  "homepage": "https://github.com/doings-projects-stuffs/financial-calculator#readme",
+  "devDependencies": {
+    "vitest": "^1.6.0"
+  },
+  "type": "module"
+}
