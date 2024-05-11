@@ -119,6 +119,9 @@ describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A
         ])('(A/G,$i,$n)=$value', (({ n, i, value }) => {
             expect(TVM.A.G(findPercentage(i), n)).toBeCloseTo(value, 5);
         }))
+        test('(A/G,i,0) throws error', () => {
+            expect(() => TVM.A.G(0.5, 0)).toThrowError()
+        })
     })
 
     describe('Testing (P/C,i,g,n)', () => {

@@ -135,6 +135,9 @@ export function uniformGradientSeries(i, n) {
         // might be off by one
         return n > 1 ? sumOfNaturalNumbers(n-1) / n : 0
     }
+    if (n === 0) {
+        throw new Error('n cannot be zero')
+    }
     return (1 / i) - (n / (Math.pow(1 + i, n) - 1));
 }
 
