@@ -1,5 +1,5 @@
 import {
-    negate
+    negate, sumOfNaturalNumbers
 } from "./utils.js";
 
 export const TVM = {
@@ -36,10 +36,10 @@ export function simpleAmount(i, n) {
  * @param {number} n number of compounding periods per time interval
  */
 export function compoundAmount(i, n) {
+    if (i === 0) {
+        return 1
+    }
     if (n === Infinity) {
-        if (i === 0) {
-            return NaN
-        }
         return Infinity;
     }
     return Math.pow(1 + i, n);
@@ -51,11 +51,6 @@ export function compoundAmount(i, n) {
  * @param {number} n number of compounding periods per time interval
  */
 export function presentValue(i, n) {
-    if (n === Infinity) {
-        if (i == 0) {
-            return NaN
-        }
-    }
     return 1 / compoundAmount(i, n);
 }
 
@@ -65,6 +60,9 @@ export function presentValue(i, n) {
  * @param {number} n number of compounding periods per time interval
  */
 export function seriesPresentValue(i, n) {
+    if (i === 0) {
+        return n
+    }
     if (n === Infinity) {
         return 1 / i;
     }
@@ -77,9 +75,6 @@ export function seriesPresentValue(i, n) {
  * @param {number} n number of compounding periods per time interval
  */
 export function capitalRecovery(i, n) {
-    if (n === Infinity) {
-        return i;
-    }
     return 1 / seriesPresentValue(i, n);
 }
 
@@ -90,6 +85,9 @@ export function capitalRecovery(i, n) {
  * @param {number} n number of compounding periods per time interval
  */
 export function seriesCompoundAmount(i, n) {
+    if (i === 0) {
+        return n
+    }
     if (n === Infinity) {
         return Infinity;
     }
@@ -102,9 +100,6 @@ export function seriesCompoundAmount(i, n) {
  * @param {number} n number of compounding periods per time interval
  */
 export function sinkingFund(i, n) {
-    if (n === Infinity) {
-        return 0;
-    }
     return 1 / seriesCompoundAmount(i, n);
 }
 
@@ -115,11 +110,12 @@ export function sinkingFund(i, n) {
  * @returns
  */
 export function uniformGradientSeries(i, n) {
-    if (n === 0) {
-        throw new Error("The number of periods 'n' cannot be zero.");
+    if (n === Infinity) {
+        return Infinity
     }
-    else if (n === Infinity) {
-        throw new Error("The number of periods 'n' cannot be Infinity.");
+    if (i === 0) {
+        // might be off by one
+        return n > 1 ? sumOfNaturalNumbers(n-1) / n : 0
     }
     return (1 / i) - (n / (Math.pow(1 + i, n) - 1));
 }

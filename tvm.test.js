@@ -1,4 +1,4 @@
-import { describe, expect, it, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { TVM } from './tvm.js';
 import { findPercentage } from './utils.js';
 
@@ -11,6 +11,7 @@ describe('Testing Simple Interest Rate', () => {
         { n: 2, i: 50, expected: -2 },
         { n: 2, i: 100, expected: -3 },
         { n: Infinity, i: 50, expected: -Infinity },
+        { n: 1, i: Infinity, expected: -Infinity },
     ])('n=$n, i=$i, P_simple($i, $n)=$expected', ({ n, i, expected }) => {
         expect(TVM.F.P_simple(findPercentage(i), n)).toBeCloseTo(expected, 5);
     })
@@ -32,22 +33,21 @@ describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A
             expect(TVM.F.P(findPercentage(i), n)).toBeCloseTo(value, 5);
             expect(1 / TVM.P.F(findPercentage(i), n)).toBeCloseTo(value, 5);
         }))
-        test('(F/P,0,Infinity)=1/(P/F,0,Infinity)=NaN', () => {
-            expect(TVM.F.P(0, Infinity)).toBe(NaN);
-            expect(1/TVM.P.F(0, Infinity)).toBe(NaN);
+
+        test.each([
+            { n: Infinity, i: 0.5, value: -Infinity },
+            { n: Infinity, i: Infinity, value: -Infinity },
+            { n: Infinity, i: 0, value: -1 }
+        ])('(F/P,$i,$n)=$value', ({ n, i, value }) => {
+            expect(TVM.F.P(findPercentage(i), n)).toBe(value);
         })
 
-        test('(F/P,50,Infinity)=Infinity', () => {
-            expect(TVM.F.P(0.5, Infinity)).toBe(-Infinity);
-        })
-        test('(F/P,Infinity,Infinity)=Infinity', () => {
-            expect(TVM.F.P(Infinity, Infinity)).toBe(-Infinity);
-        })
-        test('(P/F,50,Infinity)=-0', () => {
-            expect(TVM.P.F(0.5, Infinity)).toBe(-0);
-        })
-        test('(P/F,Infinity,Infinity)=-0', () => {
-            expect(TVM.P.F(Infinity, Infinity)).toBe(-0);
+        test.each([
+            { n: Infinity, i: 0.5, value: -0 },
+            { n: Infinity, i: Infinity, value: -0 },
+            { n: Infinity, i: 0, value: -1 },
+        ])('(P/F,$i,$n)=$value', ({ n, i, value }) => {
+            expect(TVM.P.F(findPercentage(i), n)).toBe(value);
         })
     })
 
@@ -83,8 +83,13 @@ describe('Testing TVM Formulas: (F/P,i,n), (P/F,i,n), (F/A,i,n), (A/F,i,n), (P/A
             expect(1 / TVM.A.F(findPercentage(i), n)).toBeCloseTo(value, 5);
         }))
 
-        test('(F/A,50,Infinity)=Infinity', () => {
-            expect(TVM.F.A(findPercentage(50), Infinity)).toBe(-Infinity)
+
+        test.each([
+            { n: Infinity, i: 50, value: -Infinity },
+            { n: Infinity, i: Infinity, value: -Infinity },
+            { n: Infinity, i: 0, value: -Infinity },
+        ])('(F/A,$i,$n)=$value', ({ n, i, value }) => {
+            expect(TVM.F.A(findPercentage(i), n)).toBe(value);
         })
         test('(A/F,50,Infinity)=0', () => {
             expect(TVM.A.F(findPercentage(50), Infinity)).toBe(-0)
