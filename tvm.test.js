@@ -10,6 +10,7 @@ describe('Testing Simple Interest Rate', () => {
         { n: 1, i: 100, expected: -2 },
         { n: 2, i: 50, expected: -2 },
         { n: 2, i: 100, expected: -3 },
+        // { n: Infinity, i: 0, expected: -1 }, NaN
         { n: Infinity, i: 50, expected: -Infinity },
         { n: 1, i: Infinity, expected: -Infinity },
     ])('n=$n, i=$i, P_simple($i, $n)=$expected', ({ n, i, expected }) => {

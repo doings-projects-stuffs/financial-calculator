@@ -51,7 +51,13 @@ export function compoundAmount(i, n) {
  * @param {number} n number of compounding periods per time interval
  */
 export function presentValue(i, n) {
-    return 1 / compoundAmount(i, n);
+    if (i === 0) {
+        return 1
+    }
+    if (n === Infinity) {
+        return 0;
+    }
+    return 1 / Math.pow(1 + i, n);
 }
 
 /**
@@ -75,7 +81,13 @@ export function seriesPresentValue(i, n) {
  * @param {number} n number of compounding periods per time interval
  */
 export function capitalRecovery(i, n) {
-    return 1 / seriesPresentValue(i, n);
+    if (i === 0) {
+        return 1 / n
+    }
+    if (n === Infinity) {
+        return i;
+    }
+    return i / (1 - Math.pow(1 + i, -n));
 }
 
 
@@ -100,7 +112,13 @@ export function seriesCompoundAmount(i, n) {
  * @param {number} n number of compounding periods per time interval
  */
 export function sinkingFund(i, n) {
-    return 1 / seriesCompoundAmount(i, n);
+    if (i === 0) {
+        return 1 / n
+    }
+    if (n === Infinity) {
+        return 0;
+    }
+    return i / (Math.pow(1 + i, n) - 1);
 }
 
 /**
