@@ -15,3 +15,12 @@ export function findPercentage(value) {
 export function negate(inputFunction) {
     return (...args) => -1 * inputFunction(...args)
 }
+
+/**
+ * Compute the sum of natural numbers up to `n`
+ * @param {number} n 
+ * @returns 
+ */
+export function sumOfNaturalNumbers(n) {
+    return n * (n + 1) / 2
+}
