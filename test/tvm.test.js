@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import { TVM } from './tvm.js';
-import { findPercentage } from './utils.js';
+import { TVM } from '../src/tvm.js';
+import { findPercentage } from '../src/utils.js';
 
 describe('Testing Simple Interest Rate', () => {
     test.each([

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { sumOfNaturalNumbers } from './utils';
+import { sumOfNaturalNumbers } from '../src/utils.js';
 
 describe('Testing sumOfNaturalNumbers', () => {
     test.each([
