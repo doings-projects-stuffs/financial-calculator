@@ -2,6 +2,9 @@ import {
     negate, sumOfNaturalNumbers
 } from "./utils.js";
 
+/**
+ * @constant
+ */
 export const TVM = {
     "F": {
         "P_simple": negate(simpleAmount),
