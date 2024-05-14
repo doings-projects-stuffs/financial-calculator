@@ -1,5 +1,5 @@
 import {
-    negate, sumOfNaturalNumbers
+    negate, findPercentage, sumOfNaturalNumbers
 } from "./utils.js";
 
 /**
@@ -166,3 +166,4 @@ export function geometricSeriesPresentValue(i, g, n) {
 // console.log(1 * TVM.P.C(0.12, 0.1, 6)); // i != g
 // console.log(1 * TVM.P.C(0.1, 0.1, 6)); // i = g
 // console.log(1 * TVM.P.C(0.12, 0.1, 9999999999999)); // i > g && n is Inf
+

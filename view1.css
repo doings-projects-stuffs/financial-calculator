@@ -1,0 +1,19 @@
+body {
+    margin: 50px;
+    font-family: Arial, sans-serif;
+}
+
+.tvm-input {
+    margin-bottom: 20px; /*  between rows */
+}
+
+.tvm-input label {
+    display: inline-block;
+    width: 140px; /* so all labels have the same width */
+    text-align: right; /* align text to the right of the label */
+    margin-right: 10px; /* spacing between label and input */
+}
+
+.tvm-input input {
+    width: 200px; /* width standard for all input fields */
+}
