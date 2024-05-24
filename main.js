@@ -8,7 +8,6 @@ const state = {
     IY: '',
     N: ''
 }
-
 for (const key in state) {
     document.getElementById(key).addEventListener('input', (event) => {
         state[key] = event.target.value;
@@ -16,9 +15,11 @@ for (const key in state) {
     })
 }
 
+const tvmResult = document.getElementById('tvm-result');
+
 function calculateTVM() {
     const FV = +state.PV * TVM.F.P(findPercentage(+state.IY), +state.N);
-    document.getElementById('tvm-result').textContent = `Future Value: ${FV.toFixed(2)}`;
+    tvmResult.textContent = `Future Value: ${FV.toFixed(2)}`;
 }
 
 const button = document.getElementById("tvm-calculate")
