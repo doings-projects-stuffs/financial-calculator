@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     utils.url = "github:numtide/flake-utils";
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -25,10 +25,6 @@
 	            pkgs.bashInteractive
               nodejs_20 nodePackages.npm nodePackages.typescript-language-server nodePackages.vscode-langservers-extracted nodePackages.eslint # node
             ];
-
-            shellHook = ''
-            export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib
-          '';
           };
         });
 }
