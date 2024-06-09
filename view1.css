@@ -1,0 +1,18 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.tvm-input {
+    margin-bottom: 20px; /*  between rows */
+}
+
+.tvm-input label {
+    display: inline-block;
+    width: 8rem;
+    margin-right: 1rem; /* spacing between label and input */
+}
+
+.tvm-input input {
+    width: 10rem;
+}

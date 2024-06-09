@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<!-- view1 is the buttonless view -->
+
+<html>
+    <head>
+        <title>view1</title>
+        <link href="view1.css" rel="stylesheet" />
+    </head>
+    <!-- Leaving style tags in for future css debugging purposes -->
+    <style>
+    </style>
+    <body>
+        <div class="tvm-input">
+            <label for="PV">Present Value:</label>
+            <input id="PV" type="text"/>
+        </div>
+        <div class="tvm-input">
+            <label for="PMT">Payments:</label>
+            <input id="PMT" type="text"/>
+        </div>
+        <div class="tvm-input">
+            <label for="FV">Future Value:</label>
+            <input id="FV" type="text"/>
+        </div>
+        <div class="tvm-input">
+            <label for="IY">Interest Rate (%):</label>
+            <input id="IY" type="text"/>
+        </div>
+        <div class="tvm-input">
+            <label for="N">Periods:</label>
+            <input id="N" type="text"/>
+        </div>
+        <button id="tvm-calculate">Calculate</button>
+        <div id="tvm-result">
+
+        </div>
+
+        <script src="./main.js" type="module"></script>
+    </body>
+</html>
