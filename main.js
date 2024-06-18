@@ -1,6 +1,5 @@
 import { TVM } from './src/tvm.js';
 import { findPercentage } from './src/utils.js';
-import config from './config.js';
 
 const tvmVariables = {
     PV: {
@@ -119,7 +118,7 @@ function calculateTVM() {
 
             // }
             default: {
-                throw new Error(`WTF!? ${key}`)
+                throw new Error(`WTF!? ${missingVariable}`)
             }
         }
     } catch (error) {
