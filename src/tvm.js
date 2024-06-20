@@ -1,5 +1,5 @@
 import {
-    negate, sumOfNaturalNumbers
+    negate, findPercentage, sumOfNaturalNumbers
 } from "./utils.js";
 
 /**
