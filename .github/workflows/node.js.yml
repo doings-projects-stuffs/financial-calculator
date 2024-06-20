@@ -40,6 +40,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: npm ci
     - run: npm run lint
       continue-on-error: true
 
@@ -57,6 +58,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: npm ci
     - run: npm run build --if-present
       continue-on-error: true
 
@@ -74,5 +76,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: npm ci
     - run: npm test
       continue-on-error: true
