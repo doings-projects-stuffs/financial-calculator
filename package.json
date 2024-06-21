@@ -5,16 +5,13 @@
   "main": "main.js",
   "scripts": {
     "test": "vitest",
-    "lint": "eslint ."
+    "lint": "./lint.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/doings-projects-stuffs/financial-calculator.git"
   },
-  "keywords": [
-    "financial",
-    "calculator"
-  ],
+  "keywords": ["financial", "calculator"],
   "author": "",
   "license": "GPL-3.0-or-later",
   "bugs": {
