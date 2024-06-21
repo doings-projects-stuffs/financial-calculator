@@ -1,6 +1,5 @@
-import { TVM } from './src/tvm.js';
-import { findPercentage } from './src/utils.js';
-import config from './config.js';
+import { TVM } from "./src/tvm.js";
+import { findPercentage } from "./src/utils.js";
 
 const tvmVariables = {
     PV: {
@@ -22,20 +21,19 @@ const tvmVariables = {
     N: {
         description: "Periods",
         value: "",
-    }
-}
+    },
+};
 
-const tvmResult = document.getElementById('tvm-result')
+const tvmResult = document.getElementById("tvm-result");
 
 for (const key in tvmVariables) {
-    document.getElementById(key).addEventListener('input', (event) => {
+    document.getElementById(key).addEventListener("input", (event) => {
         tvmVariables[key].value = event.target.value;
         console.log(`${key}: ${tvmVariables[key]}`);
-    })
+    });
 }
 
 function calculateTVM() {
-
     tvmResult.textContent = "";
     let missingVariable = null;
 
@@ -65,12 +63,12 @@ function calculateTVM() {
                 if (tvmVariables.FV.value) {
                     const fv = Number(tvmVariables.FV.value);
                     const pvFromFV = fv * TVM.P.F(iy, n);
-                    pv += pvFromFV
+                    pv += pvFromFV;
                 }
                 if (tvmVariables.PMT.value) {
                     const pmt = Number(tvmVariables.PMT.value);
-                    const pvFromA = pmt * TVM.P.A(iy, n)
-                    pv += pvFromA
+                    const pvFromA = pmt * TVM.P.A(iy, n);
+                    pv += pvFromA;
                 }
                 tvmVariables.PV.value = String(pv);
 
@@ -119,7 +117,7 @@ function calculateTVM() {
 
             // }
             default: {
-                throw new Error(`WTF!? ${key}`)
+                throw new Error(`WTF!? ${missingVariable}`);
             }
         }
     } catch (error) {
@@ -140,6 +138,5 @@ function getInput(key) {
     }
 }
 
-const button = document.getElementById("tvm-calculate")
-button.onclick = () => calculateTVM() // setting on-click field in js instead of html
-
+const button = document.getElementById("tvm-calculate");
+button.onclick = () => calculateTVM(); // setting on-click field in js instead of html

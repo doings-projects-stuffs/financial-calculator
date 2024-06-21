@@ -1,28 +1,26 @@
-import {
-    negate, findPercentage, sumOfNaturalNumbers
-} from "./utils.js";
+import { negate, sumOfNaturalNumbers } from "./utils.js";
 
 /**
  * @constant
  */
 export const TVM = {
-    "F": {
-        "P_simple": negate(simpleAmount),
-        "P": negate(compoundAmount),
-        "A": negate(seriesCompoundAmount),
+    F: {
+        P_simple: negate(simpleAmount),
+        P: negate(compoundAmount),
+        A: negate(seriesCompoundAmount),
     },
-    "P": {
-        "F": negate(presentValue),
-        "A": negate(seriesPresentValue),
-        "C": negate(geometricSeriesPresentValue)
+    P: {
+        F: negate(presentValue),
+        A: negate(seriesPresentValue),
+        C: negate(geometricSeriesPresentValue),
     },
-    "A": {
-        "F": negate(sinkingFund),
-        "P": negate(capitalRecovery),
-        "G": negate(uniformGradientSeries)
-    }
-}
-export default TVM
+    A: {
+        F: negate(sinkingFund),
+        P: negate(capitalRecovery),
+        G: negate(uniformGradientSeries),
+    },
+};
+export default TVM;
 
 /**
  * Simple interest rate to compute the factor for future amount owed
@@ -30,7 +28,7 @@ export default TVM
  * @param {number} n number of compounding periods per time interval
  */
 export function simpleAmount(i, n) {
-    return 1 + (i * n);
+    return 1 + i * n;
 }
 
 /**
@@ -40,7 +38,7 @@ export function simpleAmount(i, n) {
  */
 export function compoundAmount(i, n) {
     if (i === 0) {
-        return 1
+        return 1;
     }
     if (n === Infinity) {
         return Infinity;
@@ -55,7 +53,7 @@ export function compoundAmount(i, n) {
  */
 export function presentValue(i, n) {
     if (i === 0) {
-        return 1
+        return 1;
     }
     if (n === Infinity) {
         return 0;
@@ -70,7 +68,7 @@ export function presentValue(i, n) {
  */
 export function seriesPresentValue(i, n) {
     if (i === 0) {
-        return n
+        return n;
     }
     if (n === Infinity) {
         return 1 / i;
@@ -85,14 +83,13 @@ export function seriesPresentValue(i, n) {
  */
 export function capitalRecovery(i, n) {
     if (i === 0) {
-        return 1 / n
+        return 1 / n;
     }
     if (n === Infinity) {
         return i;
     }
     return i / (1 - Math.pow(1 + i, -n));
 }
-
 
 /**
  * (F/A,i,n) time value of money factor
@@ -101,7 +98,7 @@ export function capitalRecovery(i, n) {
  */
 export function seriesCompoundAmount(i, n) {
     if (i === 0) {
-        return n
+        return n;
     }
     if (n === Infinity) {
         return Infinity;
@@ -116,7 +113,7 @@ export function seriesCompoundAmount(i, n) {
  */
 export function sinkingFund(i, n) {
     if (i === 0) {
-        return 1 / n
+        return 1 / n;
     }
     if (n === Infinity) {
         return 0;
@@ -132,16 +129,16 @@ export function sinkingFund(i, n) {
  */
 export function uniformGradientSeries(i, n) {
     if (n === Infinity) {
-        return Infinity
+        return Infinity;
     }
     if (i === 0) {
         // might be off by one
-        return n > 1 ? sumOfNaturalNumbers(n-1) / n : 0
+        return n > 1 ? sumOfNaturalNumbers(n - 1) / n : 0;
     }
     if (n === 0) {
-        throw new Error('n cannot be zero')
+        throw new Error("n cannot be zero");
     }
-    return (1 / i) - (n / (Math.pow(1 + i, n) - 1));
+    return 1 / i - n / (Math.pow(1 + i, n) - 1);
 }
 
 /**
@@ -156,7 +153,7 @@ export function geometricSeriesPresentValue(i, g, n) {
     } else if (i === g) {
         return n / (1 + g);
     } else {
-        return (1 - Math.pow(((1 + g) / (1 + i)), n)) / (i - g);
+        return (1 - Math.pow((1 + g) / (1 + i), n)) / (i - g);
     }
 }
 
@@ -166,4 +163,3 @@ export function geometricSeriesPresentValue(i, g, n) {
 // console.log(1 * TVM.P.C(0.12, 0.1, 6)); // i != g
 // console.log(1 * TVM.P.C(0.1, 0.1, 6)); // i = g
 // console.log(1 * TVM.P.C(0.12, 0.1, 9999999999999)); // i > g && n is Inf
-
