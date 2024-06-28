@@ -55,3 +55,25 @@ export function newtown_raphson_method(x0, f, f_prime, tolerance, epsilon, max_i
 
     return null
 }
+
+/**
+ * Compute the derivative of a function using the definition of a derivative
+ * @template {(x: number) => number} Fn
+ * @param {Fn} f
+ * @param {number} delta_x
+ * @returns {Fn}
+ */
+export function derivative(f, delta_x) {
+    return (x) => (f(x + delta_x) - f(x)) / delta_x
+}
+
+/**
+ * Compute the derivative of a tvm function using the definition of a derivative
+ * @param {(i: number, n: number) => number} f
+ * @param {number} n
+ * @param {number} delta_x
+ * @returns {(i: number) => number}
+ */
+export function tvm_derivative(f, n, delta_x) {
+    return derivative((i) => f(i, n), delta_x)
+}
