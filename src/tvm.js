@@ -46,6 +46,12 @@ export function compoundAmount(i, n) {
     return Math.pow(1 + i, n);
 }
 
+// F = P(1 + i)^n
+// 3 = 1(1 + i)^2
+// 0 = 1(1 + i)^2 - 3
+// 0 = P(1 + i)^n - F
+// derivative(random_i) = [ P(1 + i + di)^n - F ] - [ P(1 + i - di)^n - F ]
+
 /**
  * (P/F,i,n) time value of money factor
  * @param {number} i interest rate (e.g. 0.1 for 10%)
